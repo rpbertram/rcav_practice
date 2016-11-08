@@ -25,6 +25,19 @@ class CalculationsController < ApplicationController
   end
 
   def payment
+    @rate = params["INTEREST_RATE"].to_f
+    @years = params["NUMBER_OF_YEARS"].to_i
+    @principal_value = params["PRINCIPAL_VALUE"].to_i
+
+    @annrate = @rate/100
+    @morate = @annrate/1200
+    @term = (@years * 12)
+    @principal = @principal_value
+
+    @numerator = @principal * @morate * ((1+@morate)**@term)
+    @denominator = (1+@morate)**@term - 1
+    @payment = (@numerator / @denominator).round(2)
+
     render("payment.html.erb")
   end
 
