@@ -4,13 +4,15 @@ class CalculationsController < ApplicationController
   end
 
   def square
-    @number = params["NUMBER"].to_i
+    @number = params["NUMBER"].to_f
     @square = @number**2
 
     render("square.html.erb")
   end
 
   def square_root
+    @number = params["NUMBER"].to_f.round(0)
+    @sqrt = Math.sqrt(@number).round(2)
     render("square_root.html.erb")
   end
 
