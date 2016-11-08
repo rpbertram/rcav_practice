@@ -4,6 +4,9 @@ class CalculationsController < ApplicationController
   end
 
   def square
+    @number = params["NUMBER"].to_i
+    @square = @number**2
+
     render("square.html.erb")
   end
 
